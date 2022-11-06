@@ -2,7 +2,9 @@
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
 import { contextBridge, ipcRenderer } from 'electron';
+import { PublicFunctions } from './shared/types';
 
-contextBridge.exposeInMainWorld('fileSystem', {
-    getItemsFromPath: (path: string) => ipcRenderer.invoke('readItems', path),
-});
+contextBridge.exposeInMainWorld('publicFunctions', {
+    getItemsFromPath: (path: string) => ipcRenderer.invoke('readDir', path),
+    openFileFromPath: (path: string) => ipcRenderer.invoke('openFile', path),
+} as PublicFunctions);
