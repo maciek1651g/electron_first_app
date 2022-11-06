@@ -26,35 +26,18 @@
  * ```
  */
 
+import './app/index';
 import './index.css';
-import { PublicFunctions, File } from './shared/types';
+import './app/MainPage/mainPageStyle.module.css';
 
-console.log(
-    '👋 This message is being logged by "renderer.js", included via webpack'
-);
+import { PublicFunctions } from './shared/types';
 
 const publicFunctions: PublicFunctions = (window as any).publicFunctions;
 
-const getItemsFromPath = (path: string) => {
+export const getItemsFromDir = (path: string) => {
     return publicFunctions.getItemsFromPath(path);
 };
 
-// getItemsFromPath('\\Desktop').then((files) => {
-//     console.log(files);
-// });
-
-const openFile = (file: File) => {
-    if (file.isDirectory) {
-        return new Promise((resolve) => {
-            resolve(undefined);
-        });
-    } else {
-        return publicFunctions.openFileFromPath(file.path);
-    }
+export const openFileFromPath = (path: string) => {
+    return publicFunctions.openFileFromPath(path);
 };
-
-// const file: File = {
-//     name: 'Desktop',
-//     path: '\\Desktop\\File1.txt',
-//     isDirectory: false,
-// };
