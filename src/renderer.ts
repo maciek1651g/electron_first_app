@@ -29,15 +29,3 @@
 import './app/index';
 import './index.css';
 import './app/MainPage/mainPageStyle.module.css';
-
-import { PublicFunctions } from './shared/types';
-
-const publicFunctions: PublicFunctions = (window as any).publicFunctions;
-
-export const getItemsFromDir = (path: string) => {
-    return publicFunctions.getItemsFromPath(path);
-};
-
-export const openFileFromPath = (path: string) => {
-    return publicFunctions.openFileFromPath(path);
-};

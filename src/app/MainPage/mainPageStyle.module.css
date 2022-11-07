@@ -4,4 +4,11 @@
     width: 100vw;
     height: 100vh;
     min-width: 420px;
+    font-size: 16px;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
 }
