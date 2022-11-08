@@ -7,4 +7,7 @@ import { PublicFunctions } from './shared/types';
 contextBridge.exposeInMainWorld('publicFunctions', {
     getItemsFromPath: (path: string) => ipcRenderer.invoke('readDir', path),
     openFileFromPath: (path: string) => ipcRenderer.invoke('openFile', path),
+    maximize: () => ipcRenderer.invoke('maximize'),
+    minimize: () => ipcRenderer.invoke('minimize'),
+    close: () => ipcRenderer.invoke('close'),
 } as PublicFunctions);

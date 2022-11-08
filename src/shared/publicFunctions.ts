@@ -1,4 +1,4 @@
-import { PublicFunctions } from './../shared/types';
+import { PublicFunctions } from './types';
 
 const publicFunctions: PublicFunctions = (window as any).publicFunctions;
 
@@ -8,6 +8,18 @@ export const getItemsFromDir = (path: string) => {
 
 export const openFileFromPath = (path: string) => {
     return publicFunctions.openFileFromPath(path);
+};
+
+export const close = () => {
+    publicFunctions.close();
+};
+
+export const minimize = () => {
+    publicFunctions.minimize();
+};
+
+export const maximize = () => {
+    publicFunctions.maximize();
 };
 
 const publicFunctionsExport = {

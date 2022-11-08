@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './leftPanelStyle.module.css';
-import { getItemsFromDir } from '../../../publicFunctions';
+import { getItemsFromDir } from '../../../../shared/publicFunctions';
 import { File } from '../../../../shared/types';
 
 const LeftPanel = (props: { nextPath: (file: File) => void }) => {

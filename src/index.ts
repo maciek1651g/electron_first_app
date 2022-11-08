@@ -19,18 +19,21 @@ const createWindow = (): void => {
     const mainWindow = new BrowserWindow({
         height: 600,
         width: 800,
+        frame: false,
         webPreferences: {
             preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
         },
     });
 
-    createEventListeners();
+    mainWindow.setMenuBarVisibility(false);
+
+    createEventListeners(mainWindow);
 
     // and load the index.html of the app.
     mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -71,7 +74,7 @@ const preparePath = (filePath: string) => {
     return path.normalize(path.join(mainFolderPath, filePath));
 };
 
-const createEventListeners = () => {
+const createEventListeners = (mainWindow: BrowserWindow) => {
     ipcMain.handle('readDir', (event, receivedPath) => {
         const filePath = preparePath(receivedPath);
 
@@ -114,5 +117,17 @@ const createEventListeners = () => {
         } else {
             return 'Operation not permitted';
         }
+    });
+
+    ipcMain.handle('minimize', (event) => {
+        mainWindow.minimize();
+    });
+
+    ipcMain.handle('maximize', (event) => {
+        mainWindow.maximize();
+    });
+
+    ipcMain.handle('close', (event) => {
+        mainWindow.close();
     });
 };
